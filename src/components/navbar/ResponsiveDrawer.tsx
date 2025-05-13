@@ -186,9 +186,7 @@
 import React, { useState } from "react";
 import {
   Menu,
-  Home,
-  LayoutDashboard,
-  Settings,
+
   LogOut,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -210,18 +208,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { useProfile } from "@/hooks/useProfile";
-import { ShoppingBagIcon, HeartIcon, MapIcon, UserCircleIcon,   ChatBubbleLeftEllipsisIcon, ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/solid";
+import { TruckIcon , HeartIcon, MapIcon, UserCircleIcon ,  ChatBubbleLeftEllipsisIcon, ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/solid";
+import { ShoppingBagIcon } from "@heroicons/react/24/outline";
 
 
 // Define menu items for navigation
 const menuItems = [
-  { text: "Home", href: "/", icon: <Home className="h-5 w-5" /> },
-  {
-    text: "Wishlist",
-    href: "/wishlist",
-    icon: <LayoutDashboard className="h-5 w-5" />,
-  },
-  { text: "Cart", href: "/cart", icon: <Settings className="h-5 w-5" /> },
+  
+  { text: "Cart", href: "/cart", icon: <ShoppingBagIcon className="h-5 w-5" /> },
 ];
 
 const Navbar: React.FC = () => {
@@ -240,7 +234,11 @@ const { profile } = useProfile();
           </SheetTrigger>
           <SheetContent side="left" className="w-64">
             <SheetHeader>
-              <SheetTitle className="text-left">Store</SheetTitle>
+              
+               <SheetTitle className="text-left"><Link href={'/'}>Store </Link></SheetTitle>
+             
+
+             
             </SheetHeader>
             <div className="py-4">
               <nav className="flex flex-col space-y-1">
@@ -251,7 +249,7 @@ const { profile } = useProfile();
                       className="flex items-center text-sm text-gray-700 hover:text-gray-900"
                     >
                       {item.icon}
-                      {item.text}{" "}
+                      {item.text}
                     </Link>
                   </div>
                 ))}
@@ -270,7 +268,7 @@ const { profile } = useProfile();
         </Sheet>
 
         {/* Logo */}
-        <div className="flex-1 text-xl font-semibold">Store</div>
+        <div className="flex-1 text-xl font-semibold"><Link href={'/'}>Store </Link></div>
 
         {/* Desktop Navigation */}
         <nav className="mx-6 hidden md:flex items-center space-x-4">
@@ -280,7 +278,7 @@ const { profile } = useProfile();
                       href={item.href}
                       className="flex items-center text-sm text-gray-700 hover:text-gray-900"
                     >
-                      {item.text}{" "}
+                      {item.icon}{" "}
                     </Link>
                   </div>
           ))}
@@ -305,12 +303,12 @@ const { profile } = useProfile();
             <DropdownMenuGroup>
                <DropdownMenuItem> <UserCircleIcon/> My Account</DropdownMenuItem>
               <DropdownMenuItem><HeartIcon/> Wishlist</DropdownMenuItem>
-              <DropdownMenuItem> <ShoppingBagIcon/> Orders</DropdownMenuItem>
+              <DropdownMenuItem> <TruckIcon/> Orders</DropdownMenuItem>
               <DropdownMenuItem> <MapIcon/> Saved Addresses</DropdownMenuItem>
               <DropdownMenuItem>< ChatBubbleLeftEllipsisIcon/> Help & Support</DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="text-red-500 hover:text-red-600">
+            <DropdownMenuItem>
               <ArrowLeftStartOnRectangleIcon/>
               Logout
             </DropdownMenuItem>
