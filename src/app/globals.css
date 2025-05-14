@@ -1,5 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 @import "tailwindcss";
 @import "tw-animate-css";
+
+
+
+body {
+       font-family: "Montserrat", sans-serif !important;
+
+  font-optical-sizing: auto;
+
+}
 
 @custom-variant dark (&:is(.dark *));
 
@@ -85,11 +96,11 @@
     --card: #ffffff;
     --card-foreground: #252525;
     --popover: #ffffff;
-    --popover-foreground: #252525;
+    --popover-foreground: #2C3034;
     --primary: #2C3034;
     --primary-foreground: #fbfbfb;
     --secondary: #f7f7f7;
-    --secondary-foreground: #353535;
+    --secondary-foreground: #2C3034;
     --muted: #f7f7f7;
     --muted-foreground: #8e8e8e;
     --accent: #f7f7f7;

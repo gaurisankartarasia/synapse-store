@@ -15,8 +15,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Spinner } from '../ui/spinner';
+import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -150,7 +149,7 @@ export default function RecommendedProductsCarousel() {
               className="absolute top-1/2 left-0 md:-left-4 -translate-y-1/2 z-10 bg-white shadow-md hover:bg-gray-100"
               onClick={() => swiperRef.current?.swiper.slidePrev()}
             >
-              <ChevronLeft className="h-4 w-4" />
+              <ChevronLeftIcon className="h-4 w-4" />
               <span className="sr-only">Previous slide</span>
             </Button>
           )}
@@ -163,7 +162,7 @@ export default function RecommendedProductsCarousel() {
               className="absolute top-1/2 right-0 md:-right-4 -translate-y-1/2 z-10 bg-white shadow-md hover:bg-gray-100"
               onClick={() => swiperRef.current?.swiper.slideNext()}
             >
-              <ChevronRight className="h-4 w-4" />
+              <ChevronRightIcon className="h-4 w-4" />
               <span className="sr-only">Next slide</span>
             </Button>
           )}

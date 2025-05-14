@@ -2,7 +2,7 @@
 import { Skeleton } from "@/components/ui/skeleton"
 import { SkeletonProductCard } from "./SkeletonProductCard"
 
-export function SkeletonSection({ title }: { title: string }) {
+export function SkeletonSection() {
   return (
     <div className="my-6">
       <Skeleton className="h-6 w-32 mb-4" />

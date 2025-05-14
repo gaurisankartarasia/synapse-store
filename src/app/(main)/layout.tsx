@@ -2,14 +2,14 @@
 import { Roboto } from "next/font/google";
 
 import type { Metadata } from "next";
-import { ReduxProvider } from "./ReduxProvider";
-import "./globals.css";
+import { ReduxProvider } from "../ReduxProvider";
+import "../globals.css";
 
 import Navbar from "@/components/navbar/Navbar";
 
 export const metadata: Metadata = {
-  title: "Synapse",
-  description: "Synapse",
+  title: "Synapse Store",
+  description: "Synapse Store",
 };
 
 const roboto = Roboto({
@@ -32,7 +32,7 @@ export default function RootLayout({
         <ReduxProvider>
           <>
             <Navbar />
-            <main>{children}</main>
+            <main className="pt-10" >{children}</main>
           </>
         </ReduxProvider>
       </body>

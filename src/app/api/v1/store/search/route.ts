@@ -169,7 +169,7 @@ import type { CustomJWTPayload } from "@/types/auth";
 
 // Internal type with relevance score for sorting
 interface ProductWithRelevance extends Product {
-  id: string;
+  productId: string;
   relevanceScore: number;
   isWishlisted?: boolean;
 }
@@ -255,7 +255,7 @@ export async function GET(req: Request) {
             
             productsMap.set(doc.id, {
                 ...data,
-                id: doc.id,
+                productId: doc.id,
                 relevanceScore
             });
         });
@@ -271,7 +271,7 @@ export async function GET(req: Request) {
                 // Add with base keyword match relevance
                 productsMap.set(doc.id, {
                     ...data,
-                    id: doc.id,
+                    productId: doc.id,
                     relevanceScore: 30
                 });
             }
@@ -293,7 +293,7 @@ export async function GET(req: Request) {
             // Add wishlist information to each product
             results = results.map(product => ({
                 ...product,
-                isWishlisted: wishlistedProductIds.has(product.id)
+                isWishlisted: wishlistedProductIds.has(product.productId)
             }));
         } else {
             // If user is not authenticated, mark all products as not wishlisted

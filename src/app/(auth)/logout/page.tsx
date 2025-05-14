@@ -53,6 +53,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { auth, signOut } from "@/lib/firebaseClient";
+import { Spinner } from "@/components/ui/spinner";
 
 const SignOutPage = () => {
   const router = useRouter();
@@ -79,6 +80,7 @@ const SignOutPage = () => {
   return (
     <section className="py-20 flex flex-col items-center justify-center">
       <div className="flex flex-col items-center gap-4">
+        <Spinner  size={40} />
         <div className="loader" />
       </div>
 

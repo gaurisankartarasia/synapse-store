@@ -4,9 +4,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Heart } from "lucide-react";
+import { HeartIcon } from "@heroicons/react/24/outline";
 import { Product } from "@/types/store/types";
-import { handleAddToWishlist } from "@/hooks/store/useWishlist";
+import { handleAddToWishlist, handleRemoveFromWishlist } from "@/hooks/store/useWishlist";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -24,25 +24,34 @@ export default function ProductCard({ product }: ProductCardProps) {
     
     setIsLoading(true);
     try {
-      await handleAddToWishlist(product);
+      if (isInWishlist) {
+        // Remove from wishlist
+        await handleRemoveFromWishlist(product.productId);
+      } else {
+        // Add to wishlist
+        await handleAddToWishlist(product);
+      }
+      // Toggle wishlist state
       setIsInWishlist(!isInWishlist);
     } catch (error) {
-      console.error("Failed to update wishlist:", error);
+      console.error(`Failed to ${isInWishlist ? 'remove from' : 'add to'} wishlist:`, error);
     } finally {
       setIsLoading(false);
     }
   };
 
   return (
-    <Card className="group relative overflow-hidden border-0 shadow-none rounded-lg transition-all hover:border-gray-300 ">
+    <Card className="group relative overflow-hidden border-0 shadow-none rounded-lg transition-all hover:shadow-lg hover:scale-105 ">
       <Button
         variant="ghost"
         size="icon"
         onClick={handleWishlistClick}
         disabled={isLoading}
-        className="absolute right-2 top-2 z-10 h-8 w-8 rounded-full bg-white/80 p-0"
+        className="absolute right-2 top-2 z-10"
+        aria-label={isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
+        title={isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
       >
-        <Heart
+        <HeartIcon
           className={`h-4 w-4 ${isInWishlist ? "fill-red-500 text-red-500" : ""}`}
         />
       </Button>

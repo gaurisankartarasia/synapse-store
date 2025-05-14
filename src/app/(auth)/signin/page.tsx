@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/redux/store';
 import { signInWithEmail } from '@/redux/features/authSlice';
-import { Eye, EyeOff } from 'lucide-react';
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 import { Spinner } from "@/components/ui/spinner";
 
 import GoogleSignInButton from '../../../components/auth/GoogleSignInButton';
@@ -101,7 +101,7 @@ export default function SignIn() {
                     className="absolute right-0 top-0 h-full px-3 py-2"
                     onClick={() => setShowPassword(!showPassword)}
                   >
-                    {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                    {showPassword ? <EyeSlashIcon className="h-4 w-4" /> : <EyeIcon className="h-4 w-4" />}
                   </Button>
                 </div>
               </div>

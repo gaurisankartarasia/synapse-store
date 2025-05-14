@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Label } from '@/components/ui/label';
+import { PlusIcon } from '@heroicons/react/24/outline';
 
 type Address = {
   id?: string;
@@ -50,11 +51,11 @@ export default function AddressPage() {
   return (
     <div className="p-6 max-w-3xl mx-auto">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-semibold">My Addresses</h1>
+        <h1 className="text-lg font-semibold">Addresses</h1>
         <Dialog open={open} onOpenChange={setOpen}  >
           <DialogTrigger asChild>
-            <Button onClick={() => setEditingAddress({ fullName: '', phoneNumber:'', street: '', city: '', postalCode: '', country: '' })}>
-              Add Address
+            <Button variant="outline" onClick={() => setEditingAddress({ fullName: '', phoneNumber:'', street: '', city: '', postalCode: '', country: '' })}>
+              <PlusIcon/> Add Address
             </Button>
           </DialogTrigger>
           <DialogContent  className='min-w-[800px]' >

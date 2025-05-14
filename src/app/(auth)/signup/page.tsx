@@ -22,8 +22,7 @@ import { Button } from '@/components/ui/button';
 import { Alert, AlertTitle } from '@/components/ui/alert';
 import { Label } from '@/components/ui/label';
 
-import { Eye, EyeOff } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
 
 export default function SignUp() {
   const router = useRouter();
@@ -125,7 +124,7 @@ export default function SignUp() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-3 top-[38px] text-muted-foreground"
                 >
-                  {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  {showPassword ? <EyeSlashIcon className="h-4 w-4" /> : <EyeIcon className="h-4 w-4" />}
                 </button>
               </div>
 
@@ -143,7 +142,7 @@ export default function SignUp() {
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   className="absolute right-3 top-[38px] text-muted-foreground"
                 >
-                  {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  {showConfirmPassword ? <EyeSlashIcon className="h-4 w-4" /> : <EyeIcon className="h-4 w-4" />}
                 </button>
               </div>
 

@@ -1,5 +1,5 @@
 // src/redux/gemini/geminiSlice.ts
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 interface GeminiState {
   generatedText: string;
@@ -8,26 +8,29 @@ interface GeminiState {
 }
 
 const initialState: GeminiState = {
-  generatedText: '',
+  generatedText: "",
   loading: false,
   error: null,
 };
 
 export const generateTextAsync = createAsyncThunk(
-  'gemini/generateText',
-  async ({ prompt, model }: { prompt: string; model?: string }, { rejectWithValue, dispatch }) => {
+  "gemini/generateText",
+  async (
+    { prompt, model }: { prompt: string; model?: string },
+    { rejectWithValue, dispatch }
+  ) => {
     try {
-      const response = await fetch('/api/v1/gemini/gen', {
-        method: 'POST',
+      const response = await fetch("/api/v1/gemini/gen", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ prompt, model }),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        return rejectWithValue(errorData.error || 'Failed to generate text.');
+        return rejectWithValue(errorData.error || "Failed to generate text.");
       }
 
       const reader = response.body?.getReader();
@@ -48,20 +51,20 @@ export const generateTextAsync = createAsyncThunk(
       }
       // return accumulatedText;
     } catch (error: any) {
-      return rejectWithValue(error.message || 'Network error.');
+      return rejectWithValue(error.message || "Network error.");
     }
   }
 );
 
 const geminiSlice = createSlice({
-  name: 'gemini',
+  name: "gemini",
   initialState,
   reducers: {
     updateGeneratedText: (state, action: PayloadAction<string>) => {
       state.generatedText = action.payload;
     },
     clearGeneratedText: (state) => {
-      state.generatedText = '';
+      state.generatedText = "";
       state.error = null;
     },
   },

@@ -2,7 +2,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Spinner } from "@/components/ui/spinner";
 import Banner from "@/components/store/FrontBannerSection";
 import RecommendedProductsCarousel from "@/components/store/RecommendedProductsCarousel";
 import ProductCard from "@/components/store/shared/ProductCard";
@@ -34,9 +33,9 @@ export default function StorePage() {
   if (loading) {
     return (
       <main className="flex flex-col min-h-96 items-center justify-center">
-         <SkeletonSection title="Electronics" />
-      <SkeletonSection title="Men" />
-      <SkeletonSection title="Pants" />
+         <SkeletonSection />
+      <SkeletonSection  />
+      <SkeletonSection  />
       </main>
     );
   }

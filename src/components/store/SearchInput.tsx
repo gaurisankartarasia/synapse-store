@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import useDebounce from '@/hooks/useDebounce';
-import { Search } from "lucide-react";
+import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -107,9 +107,9 @@ export default function SearchInput() {
   }, []);
 
   return (
-    <div ref={searchContainerRef} className="relative w-full max-w-md mx-auto">
-      <form onSubmit={handleSearchSubmit} role="search" className="relative">
-        <div className="relative">
+    <div ref={searchContainerRef} className="relative w-full max-w-lg mx-auto ">
+      <form onSubmit={handleSearchSubmit} role="search" className="relative ">
+        <div className="relative ">
           <Input
             type="search"
             placeholder="Search products..."
@@ -126,17 +126,16 @@ export default function SearchInput() {
             className="absolute inset-y-0 right-0 px-3 text-muted-foreground hover:text-primary"
             aria-label="Submit search"
           >
-            <Search className="h-4 w-4" />
+            <MagnifyingGlassIcon className="h-4 w-4" />
           </Button>
         </div>
       </form>
 
       {showSuggestions && (
-        <Card className="absolute z-20 w-full mt-1 max-h-80 overflow-y-auto">
+        <Card className="absolute bg-white/90 backdrop-blur-2xl z-20 w-full mt-1 max-h-80 overflow-y-auto rounded-b-3xl rounded-t-none shadow-2xl">
           {isLoading && (
-            <div className="flex items-center justify-center p-4 text-muted-foreground">
+            <div className="flex items-center justify-center p-4 text-muted-foreground ">
               <Spinner  />
-              <span>Loading...</span>
             </div>
           )}
           
@@ -145,13 +144,13 @@ export default function SearchInput() {
           )}
           
           {!isLoading && !error && suggestions.length === 0 && debouncedSearchTerm.length >= 2 && (
-            <div className="p-4 text-muted-foreground">No results found for "{debouncedSearchTerm}".</div>
+            <div className="p-4 text-muted-foreground text-center">No results found for "{debouncedSearchTerm}".</div>
           )}
           
           {!isLoading && !error && suggestions.length > 0 && (
             <ul>
               {suggestions.map((suggestion) => (
-                <li key={suggestion.id} className="border-b border-border last:border-b-0">
+                <li key={suggestion.id} className="border-b border-border  last:border-b-0">
                   <Link 
                     href={`/search?q=${encodeURIComponent(suggestion.name)}`}
                     className="flex items-center w-full px-4 py-2 text-left hover:bg-accent"
@@ -179,7 +178,7 @@ export default function SearchInput() {
                   className="flex items-center w-full px-4 py-2 text-left text-sm font-semibold text-primary hover:bg-accent focus:outline-none focus:bg-accent"
                   onClick={() => setShowSuggestions(false)}
                 >
-                  <Search className="h-4 w-4 mr-2" />
+                  <MagnifyingGlassIcon className="h-4 w-4 mr-2" />
                   <span>See all results for "{debouncedSearchTerm}"</span>
                 </Link>
               </li>
