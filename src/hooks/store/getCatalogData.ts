@@ -10,8 +10,7 @@ export async function getCatalogData(): Promise<{
   categoriesWithProducts: TopLevelCatalogCategory[];
 } | null> {
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
-    const res = await fetch(`${apiUrl}/api/v1/store/catalog`, {
+    const res = await fetch(`/api/v1/store/catalog`, {
       method: "GET",
       cache: "default",
       headers: { "Content-Type": "application/json" },
