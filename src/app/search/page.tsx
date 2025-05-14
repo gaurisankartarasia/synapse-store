@@ -1,13 +1,14 @@
 
-
 // "use client";
 
 // import { useState, useEffect } from 'react';
 // import { useSearchParams } from 'next/navigation';
-// import Image from 'next/image';
 // import Link from 'next/link';
 // import { Product } from '@/types/store/types';
-// import ProductCard from '@/components/Store/catalog/ProductCard';
+// import ProductCard from '@/components/store/shared/ProductCard';
+// import { Button } from '@/components/ui/button';
+// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+// import { Spinner } from "@/components/ui/spinner";
 
 // interface SearchResults {
 //   products: Product[];
@@ -59,8 +60,8 @@
 //     fetchSearchResults();
 //   }, [query, currentPage, sortBy]);
 
-//   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-//     setSortBy(e.target.value);
+//   const handleSortChange = (value: string) => {
+//     setSortBy(value);
 //     setCurrentPage(1); // Reset to first page when sorting changes
 //   };
 
@@ -81,15 +82,14 @@
 
 //     // Always show first page
 //     pages.push(
-//       <button
+//       <Button
 //         key="first"
+//         variant={currentPageNum === 1 ? "default" : "outline"}
+//         size="sm"
 //         onClick={() => handlePageChange(1)}
-//         className={`px-3 py-1 rounded ${
-//           currentPageNum === 1 ? 'bg-blue-500 text-white' : 'bg-gray-200'
-//         }`}
 //       >
 //         1
-//       </button>
+//       </Button>
 //     );
 
 //     // Calculate range of pages to show
@@ -108,15 +108,14 @@
 //     // Show middle pages
 //     for (let i = startPage; i <= endPage; i++) {
 //       pages.push(
-//         <button
+//         <Button
 //           key={i}
+//           variant={currentPageNum === i ? "default" : "outline"}
+//           size="sm"
 //           onClick={() => handlePageChange(i)}
-//           className={`px-3 py-1 rounded ${
-//             currentPageNum === i ? 'bg-blue-500 text-white' : 'bg-gray-200'
-//           }`}
 //         >
 //           {i}
-//         </button>
+//         </Button>
 //       );
 //     }
 
@@ -132,45 +131,44 @@
 //     // Always show last page if there's more than one page
 //     if (totalPages > 1) {
 //       pages.push(
-//         <button
+//         <Button
 //           key="last"
+//           variant={currentPageNum === totalPages ? "default" : "outline"}
+//           size="sm"
 //           onClick={() => handlePageChange(totalPages)}
-//           className={`px-3 py-1 rounded ${
-//             currentPageNum === totalPages ? 'bg-blue-500 text-white' : 'bg-gray-200'
-//           }`}
 //         >
 //           {totalPages}
-//         </button>
+//         </Button>
 //       );
 //     }
 
 //     return (
-//       <div className="flex justify-center gap-2 mt-8">
-//         <button
+//       <div className="mt-8 flex justify-center gap-2">
+//         <Button
+//           variant="outline"
+//           size="sm"
 //           onClick={() => handlePageChange(currentPageNum - 1)}
 //           disabled={currentPageNum === 1}
-//           className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50"
 //         >
 //           Previous
-//         </button>
+//         </Button>
 //         {pages}
-//         <button
+//         <Button
+//           variant="outline"
+//           size="sm"
 //           onClick={() => handlePageChange(currentPageNum + 1)}
 //           disabled={currentPageNum === totalPages}
-//           className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50"
 //         >
 //           Next
-//         </button>
+//         </Button>
 //       </div>
 //     );
 //   };
 
 //   return (
 //     <div className="container mx-auto px-4 py-8">
-   
-
 //       <div className="mb-6">
-//         <h1 className="text-2xl font-bold mb-2">Search Results for "{query}"</h1>
+//         <h1 className="mb-2 text-2xl font-bold">Search Results for "{query}"</h1>
 //         {searchResults && (
 //           <p className="text-gray-600">
 //             {searchResults.total} {searchResults.total === 1 ? 'result' : 'results'} found
@@ -180,61 +178,58 @@
 
 //       {/* Search Controls */}
 //       {searchResults && searchResults.total > 0 && (
-//         <div className="flex justify-between items-center mb-6">
-//           <div className="flex items-center">
-//             <label htmlFor="sort-by" className="mr-2 ">
+//         <div className="mb-6 flex items-center justify-between">
+//           <div className="flex items-center gap-2">
+//             <label htmlFor="sort-by" className="text-sm font-medium">
 //               Sort by:
 //             </label>
-//             <select
-//               id="sort-by"
-//               value={sortBy}
-//               onChange={handleSortChange}
-//               className="border rounded px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
-//             >
-//               <option value="relevance">Relevance</option>
-//               <option value="price_asc">Price: Low to High</option>
-//               <option value="price_desc">Price: High to Low</option>
-//               <option value="name_asc">Name: A to Z</option>
-//               <option value="name_desc">Name: Z to A</option>
-//               <option value="newest">Newest First</option>
-//             </select>
+//             <Select value={sortBy} onValueChange={handleSortChange}>
+//               <SelectTrigger className="w-[180px]">
+//                 <SelectValue placeholder="Sort by" />
+//               </SelectTrigger>
+//               <SelectContent>
+//                 <SelectItem value="relevance">Relevance</SelectItem>
+//                 <SelectItem value="price_asc">Price: Low to High</SelectItem>
+//                 <SelectItem value="price_desc">Price: High to Low</SelectItem>
+//                 <SelectItem value="name_asc">Name: A to Z</SelectItem>
+//                 <SelectItem value="name_desc">Name: Z to A</SelectItem>
+//                 <SelectItem value="newest">Newest First</SelectItem>
+//               </SelectContent>
+//             </Select>
 //           </div>
 //         </div>
 //       )}
 
 //       {/* Loading State */}
 //       {isLoading && (
-//         <div className="flex justify-center items-center py-20">
-//           <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+//         <div className="flex items-center justify-center py-20">
+//           <Spinner />
 //         </div>
 //       )}
 
 //       {/* Error State */}
 //       {error && !isLoading && (
-//         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+//         <div className="rounded border border-red-200 bg-red-50 px-4 py-3 text-red-700">
 //           <p>{error}</p>
 //         </div>
 //       )}
 
-//      {/* No Results */}
-// {!isLoading && !error && searchResults && searchResults.products.length === 0 && (
-//   <div className="py-10 text-center">
-//     <p className="text-xl text-gray-600">No products found for "{query}"</p>
-//     <p className="mt-2 text-gray-500">Try using different keywords or browse our categories</p>
-//   </div>
-// )}
+//       {/* No Results */}
+//       {!isLoading && !error && searchResults && searchResults.products.length === 0 && (
+//         <div className="py-10 text-center">
+//           <p className="text-xl text-gray-600">No products found for "{query}"</p>
+//           <p className="mt-2 text-gray-500">Try using different keywords or browse our categories</p>
+//         </div>
+//       )}
 
-// {/* Results Grid */}
-// {!isLoading && !error && searchResults && searchResults.products.length > 0 && (
-//   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 lg:grid-cols-4 gap-6">
-//     {searchResults.products.map((product) => (
- 
-//        <ProductCard key={product.id} product={product} />
-//     ))}
-//   </div>
-// )}
-
-      
+//       {/* Results Grid */}
+//       {!isLoading && !error && searchResults && searchResults.products.length > 0 && (
+//         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+//           {searchResults.products.map((product) => (
+//             <ProductCard key={product.productId} product={product} />
+//           ))}
+//         </div>
+//       )}
 
 //       {/* Pagination */}
 //       {searchResults && searchResults.totalPages > 1 && renderPagination()}
@@ -243,13 +238,10 @@
 // }
 
 
-
-
 "use client";
 
-import { useState, useEffect } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import Link from 'next/link';
 import { Product } from '@/types/store/types';
 import ProductCard from '@/components/store/shared/ProductCard';
 import { Button } from '@/components/ui/button';
@@ -264,7 +256,8 @@ interface SearchResults {
   totalPages: number;
 }
 
-export default function SearchPage() {
+// Separate component that uses useSearchParams
+function SearchResults() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
   const [searchResults, setSearchResults] = useState<SearchResults | null>(null);
@@ -412,7 +405,7 @@ export default function SearchPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <>
       <div className="mb-6">
         <h1 className="mb-2 text-2xl font-bold">Search Results for "{query}"</h1>
         {searchResults && (
@@ -479,6 +472,33 @@ export default function SearchPage() {
 
       {/* Pagination */}
       {searchResults && searchResults.totalPages > 1 && renderPagination()}
+    </>
+  );
+}
+
+// Loading fallback component
+function SearchPageFallback() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="mb-6">
+        <div className="mb-2 h-8 w-64 animate-pulse rounded bg-gray-200"></div>
+        <div className="h-4 w-32 animate-pulse rounded bg-gray-200"></div>
+      </div>
+      <div className="flex items-center justify-center py-20">
+        <Spinner />
+        <span className="ml-2">Loading search results...</span>
+      </div>
+    </div>
+  );
+}
+
+// Main page component
+export default function SearchPage() {
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <Suspense fallback={<SearchPageFallback />}>
+        <SearchResults />
+      </Suspense>
     </div>
   );
 }
