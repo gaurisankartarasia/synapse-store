@@ -15,7 +15,7 @@ export interface Category {
 }
 
 export interface Product {
-  id: string; // Document ID
+  productId: string; 
   name: string;
   description: string;
   price: number;
@@ -36,6 +36,7 @@ export interface Product {
 
 // Type for data sent from client to server API
 export interface ProductPayload {
+  productId: string; 
   name: string;
   description: string;
   price: number;

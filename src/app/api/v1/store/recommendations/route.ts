@@ -15,7 +15,7 @@ export async function GET(req: Request) {
             .get();
 
         const recommendedProducts: Product[] = recommendationsSnapshot.docs.map(doc => ({
-            id: doc.id,
+            productId: doc.id,
             ...doc.data(),
         } as Product)); // Cast to Product
 

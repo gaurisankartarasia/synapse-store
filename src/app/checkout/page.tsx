@@ -46,7 +46,7 @@ export default function CheckoutPage() {
       ) : (
         <>
           {cart.map((item) => (
-            <div key={item.id} className="flex justify-between items-center p-4 border-b">
+            <div key={item.productId} className="flex justify-between items-center p-4 border-b">
               <div>
                 <h2 className="text-lg">{item.name}</h2>
                 <p>₹{item.price} × {item.quantity}</p>

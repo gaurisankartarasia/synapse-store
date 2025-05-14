@@ -23,12 +23,12 @@
 import { Product } from "@/types/store/types";
 
 export async function handleAddToWishlist(product: Product) {
-  const res = await fetch("/api/v1/store/products/wishlist", {
+  const res = await fetch("/api/v1/store/products/wishlist/add", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ productId: product.id }),
+    body: JSON.stringify({ productId: product.productId }),
   });
 
   const data = await res.json();

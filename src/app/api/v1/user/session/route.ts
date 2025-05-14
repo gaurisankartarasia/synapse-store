@@ -45,7 +45,10 @@ export async function GET() {
 profilePhotoURL:   userData?.profilePhotoURL,
 username:userData?.username,
 displayName:userData?.displayName,
-isVerified: userData?.isVerified
+isVerified: userData?.isVerified,
+store:{
+  itemsInCart: userData?.itemsInStoreCart || 0,
+}
     }
 
  

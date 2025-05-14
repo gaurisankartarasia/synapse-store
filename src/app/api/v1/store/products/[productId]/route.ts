@@ -64,14 +64,14 @@ import { verifyJWT } from "@/lib/jwt";
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
-  const id = url.pathname.split("/").pop();
+  const productId = url.pathname.split("/").pop();
 
-  if (!id) {
+  if (!productId) {
     return NextResponse.json({ error: "Product ID is required" }, { status: 400 });
   }
 
   try {
-    const productDoc = await db.collection("products").doc(id).get();
+    const productDoc = await db.collection("products").doc(productId).get();
 
     if (!productDoc.exists) {
       return NextResponse.json({ error: "Product not found" }, { status: 404 });
@@ -92,8 +92,8 @@ export async function GET(req: Request) {
 
         if (uid) {
           const [wishlistDoc, cartDoc] = await Promise.all([
-            db.doc(`users/${uid}/storeWishlist/${id}`).get(),
-            db.doc(`users/${uid}/storeCart/${id}`).get(),
+            db.doc(`users/${uid}/storeWishlist/${productId}`).get(),
+            db.doc(`users/${uid}/storeCart/${productId}`).get(),
           ]);
 
           isWishlisted = wishlistDoc.exists;
@@ -105,7 +105,7 @@ export async function GET(req: Request) {
     }
 
     return NextResponse.json({
-      id: productDoc.id,
+      productId: productDoc.id,
       ...productData,
       isWishlisted,
       isInCart,

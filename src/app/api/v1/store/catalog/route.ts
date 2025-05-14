@@ -50,13 +50,13 @@ export async function GET(req: Request) {
 
       const products: Product[] = productsSnapshot.docs.map(doc => {
         const product = {
-          id: doc.id,
+          productId: doc.id,
           ...doc.data(),
         } as Product;
 
         return {
           ...product,
-          isWishlisted: userWishlistDocIds.includes(product.id),
+          isWishlisted: userWishlistDocIds.includes(product.productId),
         };
       });
 

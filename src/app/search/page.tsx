@@ -251,10 +251,10 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Product } from '@/types/store/types';
-import ProductCard from '@/components/Store/catalog/ProductCard';
+import ProductCard from '@/components/store/shared/ProductCard';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Loader2 } from 'lucide-react';
+import { Spinner } from "@/components/ui/spinner";
 
 interface SearchResults {
   products: Product[];
@@ -449,7 +449,7 @@ export default function SearchPage() {
       {/* Loading State */}
       {isLoading && (
         <div className="flex items-center justify-center py-20">
-          <Loader2 className="h-10 w-10 animate-spin text-gray-400" />
+          <Spinner />
         </div>
       )}
 
@@ -472,7 +472,7 @@ export default function SearchPage() {
       {!isLoading && !error && searchResults && searchResults.products.length > 0 && (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {searchResults.products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.productId} product={product} />
           ))}
         </div>
       )}

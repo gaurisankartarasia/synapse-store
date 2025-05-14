@@ -1,128 +1,11 @@
 
-// "use client";
-
-// import { useEffect, useState } from "react";
-// import { useRouter } from "next/navigation";
-// import Image from "next/image";
-// import { Container, Box, Button, Card } from "@mui/material";
-
-// interface CartItem {
-//   productId: string;
-//   quantity: number;
-//   product: {
-//     id: string;
-//     name: string;
-//     price: number;
-//     imageUrl?: string;
-//   } | null;
-// }
-
-// export default function CartPage() {
-//   const [cartItems, setCartItems] = useState<CartItem[]>([]);
-//   const [loading, setLoading] = useState(true);
-//   const router = useRouter();
-
-//   useEffect(() => {
-//     const fetchCart = async () => {
-//       try {
-//         const res = await fetch("/api/v1/store/cart");
-//         const data = await res.json();
-
-//         if (res.ok) {
-//           setCartItems(data.items);
-//         } else {
-//           console.error("Failed to load cart:", data.error);
-//         }
-//       } catch (err) {
-//         console.error("Error fetching cart:", err);
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchCart();
-//   }, []);
-
-//   const handleRemove = async (productId: string) => {
-//     try {
-//       const res = await fetch("/api/v1/store/cart/remove", {
-//         method: "DELETE",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({ productId }),
-//       });
-
-//       const result = await res.json();
-//       if (res.ok) {
-//         setCartItems((prev) => prev.filter((item) => item.productId !== productId));
-//       } else {
-//         console.error("Remove failed:", result.error);
-//       }
-//     } catch (err) {
-//       console.error("Error removing item:", err);
-//     }
-//   };
-
-//   if (loading) {
-//     return <p className="p-6">Loading cart...</p>;
-//   }
-
-//   return (
-//     <Container maxWidth="xl" >
-//       <h1 className="text-lg font-bold mb-4">Cart</h1>
-
-//       {cartItems.length === 0 ? (
-//         <p>Your cart is empty.</p>
-//       ) : (
-//         cartItems.map((item) => (
-//           <Card
-//             key={item.productId}
-//             className="flex gap-3 justify-evenly items-center p-4 m-2 border-b"
-//           >
-//            {item.product?.imageUrl ? (
-//               <Image src={item.product.imageUrl} width={100} height={100} alt={item.product.name} />
-//             ) : (
-//               <Box width={100} height={100} sx={{ backgroundColor: '#f0f0f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-//                 No Image
-//               </Box>
-//             )}
-//             <div>
-//               <h2 className="text-lg">{item.product?.name ?? "Product unavailable"}</h2>
-//               {item.product && (
-//                 <p>₹{item.product.price} × {item.quantity}</p>
-//               )}
-//             </div>
-//             <Button
-//               onClick={() => handleRemove(item.productId)}
-//             >
-//               Remove
-//             </Button>
-//           </Card>
-//         ))
-//       )}
-
-//       {cartItems.length > 0 && (
-//         <Button
-//         variant="contained"
-//           onClick={() => router.push("/store/checkout")}
-//         >
-//           Place Order
-//         </Button>
-//       )}
-//     </Container>
-//   );
-// }
-
-
-
 
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
+import { Spinner } from "@/components/ui/spinner";
 import { ShoppingCart, Trash2, ArrowRight, Package } from 'lucide-react';
 
 interface CartItem {
@@ -186,11 +69,8 @@ export default function CartPage() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gray-50">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading your cart...</p>
-        </div>
+      <div className="flex items-center justify-center py-20 ">
+        <Spinner />
       </div>
     );
   }
@@ -211,7 +91,7 @@ export default function CartPage() {
             <h2 className="text-2xl font-semibold mb-3">Your cart is empty</h2>
             <p className="text-gray-500 mb-6">Looks like you haven't added any products to your cart yet.</p>
             <Button 
-              onClick={() => router.push('/store')}
+              onClick={() => router.push('/')}
               size="lg"
               className="px-6"
             >
@@ -293,7 +173,7 @@ export default function CartPage() {
                 <Button 
                   className="w-full mt-6 flex items-center justify-center gap-2"
                   size="lg"
-                  onClick={() => router.push('/store/checkout')}
+                  onClick={() => router.push('/checkout')}
                 >
                   Proceed to Checkout
                   <ArrowRight className="h-4 w-4" />

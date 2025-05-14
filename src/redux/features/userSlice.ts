@@ -8,6 +8,9 @@ interface UserProfile {
   username: string;
   displayName: string;
   profilePhotoURL: string;
+  store:{
+    itemsInCart: number;
+  }
 }
 
 interface UserState {

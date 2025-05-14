@@ -3,10 +3,13 @@ interface UserProfile {
     username: string;
     displayName: string;
     profilePhotoURL: string;
+    store:{
+      itemsInCart: number;
+    }
   }
 
 export async function fetchUserProfile(): Promise<UserProfile> {
-  const response = await fetch('/api/v1/user/profile');
+  const response = await fetch('/api/v1/user/session');
   
   if (!response.ok) {
     const error = await response.json();
