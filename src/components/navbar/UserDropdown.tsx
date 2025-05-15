@@ -77,13 +77,14 @@ import {
   UserCircleIcon,
   ChatBubbleLeftEllipsisIcon,
   ArrowLeftStartOnRectangleIcon,
-} from "@heroicons/react/24/solid";
+} from "@heroicons/react/24/outline";
 import { useProfile } from "@/hooks/useProfile";
 import Link from "next/link";
 
 interface DropdownLinkItemProps {
   href: string;
   children: React.ReactNode;
+  classname?: string;
 }
 
 const DropdownLinkItem = ({ href, children }: DropdownLinkItemProps) => {
@@ -97,6 +98,8 @@ const DropdownLinkItem = ({ href, children }: DropdownLinkItemProps) => {
 const UserDropdown = () => {
   const { profile } = useProfile();
 
+  const avatar = profile?.identity === "female" ? "/assets/avatar_female.svg" : "/assets/avatar_male.svg"
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -106,7 +109,7 @@ const UserDropdown = () => {
           className="relative h-8 w-8 rounded-full"
         >
           <Avatar className="h-8 w-8">
-            <AvatarImage src={profile?.profilePhotoURL} alt="user image profile" />
+            <AvatarImage src={avatar} alt="user image profile" />
             <AvatarFallback>U</AvatarFallback>
           </Avatar>
         </Button>
@@ -114,24 +117,24 @@ const UserDropdown = () => {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuGroup>
           <DropdownLinkItem href="/account">
-            <UserCircleIcon className="h-5 w-5 mr-2" /> My Account
+            <UserCircleIcon className="h-5 w-5 mr-2 text-primary" /> My Account
           </DropdownLinkItem>
           <DropdownLinkItem href="/wishlist">
-            <HeartIcon className="h-5 w-5 mr-2" /> Wishlist
+            <HeartIcon className="h-5 w-5 mr-2 text-primary" /> Wishlist
           </DropdownLinkItem>
           <DropdownLinkItem href="/orders">
-            <TruckIcon className="h-5 w-5 mr-2" /> Orders
+            <TruckIcon className="h-5 w-5 mr-2 text-primary" /> Orders
           </DropdownLinkItem>
           <DropdownLinkItem href="/addresses">
-            <MapIcon className="h-5 w-5 mr-2" /> Saved Addresses
+            <MapIcon className="h-5 w-5 mr-2 text-primary" /> Saved Addresses
           </DropdownLinkItem>
           <DropdownLinkItem href="/help">
-            <ChatBubbleLeftEllipsisIcon className="h-5 w-5 mr-2" /> Help & Support
+            <ChatBubbleLeftEllipsisIcon className="h-5 w-5 mr-2 text-primary" /> Help & Support
           </DropdownLinkItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownLinkItem href="/logout">
-          <ArrowLeftStartOnRectangleIcon className="h-5 w-5 mr-2" /> Logout
+        <DropdownLinkItem classname="text-primary"  href="/logout">
+          <ArrowLeftStartOnRectangleIcon className="h-5 w-5 mr-2 text-primary" /> Logout
         </DropdownLinkItem>
       </DropdownMenuContent>
     </DropdownMenu>

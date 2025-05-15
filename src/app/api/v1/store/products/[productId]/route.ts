@@ -61,6 +61,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/firebaseAdmin";
 import { cookies } from "next/headers";
 import { verifyJWT } from "@/lib/jwt";
+import { time } from "console";
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
@@ -112,6 +113,7 @@ export async function GET(req: Request) {
       viewer: {
         uid,
       },
+       status: "ok"
     });
   } catch (error) {
     console.error("Error fetching product:", error);

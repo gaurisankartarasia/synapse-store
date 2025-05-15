@@ -1,106 +1,3 @@
-// 'use client';
-
-// import { useEffect, useState } from "react";
-// import { Input } from "@/components/ui/input";
-// import { Label } from "@/components/ui/label";
-// import { Button } from "@/components/ui/button";
-// import { Skeleton } from "@/components/ui/skeleton";
-// import { fetchAccount, updateAccountField } from "@/hooks/user/account/useAccount";
-
-// type Field = {
-//   label: string;
-//   field: string;
-//   value: string;
-//   fallback?: boolean;
-//   fallbackMessage?: string;
-// };
-
-// export default function AccountPage() {
-//   const [fields, setFields] = useState<Field[] | null>(null);
-//   const [loading, setLoading] = useState(false);
-
-//   useEffect(() => {
-//     fetchAccount().then((data) => {
-//       setFields([
-//         { label: "Full Name", field: "displayName", value: data.displayName },
-//         {
-//           label: "Email",
-//           field: "storeEmail",
-//           value: data.email,
-//           fallback: data.emailFallback,
-//           fallbackMessage: "This is your default Synapse account email.",
-//         },
-//         {
-//           label: "Phone",
-//           field: "storePhone",
-//           value: data.phone,
-//           fallback: data.phoneFallback,
-//           fallbackMessage: "This is your default Synapse account phone.",
-//         },
-//         { label: "Gender", field: "gender", value: data.gender },
-//       ]);
-//     });
-//   }, []);
-
-//   const handleSave = async (index: number, value: string) => {
-//     const field = fields![index];
-//     setLoading(true);
-//     try {
-//       await updateAccountField(field.field, value);
-//       const newFields = [...fields!];
-//       newFields[index].value = value;
-//       newFields[index].fallback = false;
-//       setFields(newFields);
-//     } catch (error) {
-//       console.error("Update failed:", error);
-//     }
-//     setLoading(false);
-//   };
-
-//   if (!fields) {
-//     return (
-//       <div className="space-y-4 max-w-xl mx-auto mt-10">
-//         {[...Array(4)].map((_, i) => (
-//           <Skeleton key={i} className="h-14 w-full rounded-md" />
-//         ))}
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className="p-6 max-w-xl mx-auto">
-//       <h1 className="text-2xl font-semibold mb-6">My Account</h1>
-//       <div className="space-y-6">
-//         {fields.map((field, i) => (
-//           <div key={i} className="space-y-2">
-//             <Label>{field.label}</Label>
-//             <Input
-//               value={field.value}
-//               onChange={(e) => {
-//                 const newFields = [...fields];
-//                 newFields[i].value = e.target.value;
-//                 setFields(newFields);
-//               }}
-//               disabled={loading}
-//             />
-//             {field.fallback && (
-//               <p className="text-sm text-muted-foreground">{field.fallbackMessage}</p>
-//             )}
-//             <Button
-//               className="mt-1"
-//               size="sm"
-//               onClick={() => handleSave(i, field.value)}
-//               disabled={loading}
-//             >
-//               Save
-//             </Button>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// }
-
 
 
 'use client';
@@ -179,6 +76,7 @@ export default function AccountPage() {
     setLoading(false);
   };
 
+
   if (!fields) {
     return (
       <div className="space-y-4 max-w-xl mx-auto mt-10">
@@ -207,8 +105,8 @@ export default function AccountPage() {
                       <SelectValue placeholder="Select gender" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="Male">Male</SelectItem>
-                      <SelectItem value="Female">Female</SelectItem>
+                      <SelectItem value="male">Male</SelectItem>
+                      <SelectItem value="female">Female</SelectItem>
                     </SelectContent>
                   </Select>
                 ) : (

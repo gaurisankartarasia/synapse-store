@@ -42,7 +42,7 @@ export async function GET() {
 
     const user ={
       uid: payload.uid,
-profilePhotoURL:   userData?.profilePhotoURL,
+identity:userData?.gender,
 username:userData?.username,
 displayName:userData?.displayName,
 isVerified: userData?.isVerified,

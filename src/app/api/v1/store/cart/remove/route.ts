@@ -81,7 +81,7 @@ export async function DELETE(req: Request) {
       itemsInStoreCart: FieldValue.increment(-1),
     });
 
-    return NextResponse.json({ message: "Item removed from cart" });
+    return NextResponse.json({  status: "ok" });
   } catch (error) {
     console.error("Error removing item from cart:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

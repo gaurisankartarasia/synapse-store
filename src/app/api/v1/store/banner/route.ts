@@ -12,7 +12,7 @@ export async function GET() {
 
     const data = snapshot.data();
 
-    return NextResponse.json(data);
+    return NextResponse.json(data );
   } catch (error) {
     console.error('Error fetching banner:', error);
     return NextResponse.json({ error: 'Failed to fetch banner' }, { status: 500 });

@@ -85,7 +85,7 @@ export async function GET() {
       })
     );
 
-    return NextResponse.json({ wishlist: wishlistWithProductDetails });
+    return NextResponse.json({ wishlist: wishlistWithProductDetails, status: "ok" }, { status: 200 });
   } catch (error) {
     console.error("Wishlist fetch error:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

@@ -89,10 +89,10 @@ export async function POST(request: Request) {
       {
         itemsInStoreWishlist: FieldValue.increment(1),
       },
-      { merge: true } // ✅ Keep existing fields intact
+      { merge: true } // Keep existing fields intact
     );
 
-    return NextResponse.json({ message: "Product added to wishlist" }, { status: 200 });
+    return NextResponse.json({ status: "ok" }, { status: 200 });
   } catch (error) {
     console.error("Wishlist API error:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

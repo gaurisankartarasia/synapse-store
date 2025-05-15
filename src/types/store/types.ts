@@ -29,9 +29,9 @@ export interface Product {
   isInCart?: boolean;
   categoryIds: string[];
   allCategoryIds: string[];
-  categoryNames?: string[]; // Optional denormalized field
-  createdAt: Timestamp; // Use server timestamp type on server
-  updatedAt: Timestamp; // Use server timestamp type on server
+  categoryNames?: string[]; 
+  createdAt: Timestamp; 
+  updatedAt: Timestamp; 
 }
 
 // Type for data sent from client to server API

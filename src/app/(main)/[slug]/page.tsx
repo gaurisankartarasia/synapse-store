@@ -1,8 +1,9 @@
 
+
 "use client";
 
 import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams  } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCartAsync } from "@/redux/features/cartSlice";
 import { RootState, AppDispatch } from "@/redux/store";
@@ -13,9 +14,16 @@ import { Button } from "@/components/ui/button";
 import { HeartIcon as OutlineHeart } from "@heroicons/react/24/outline";
 import { HeartIcon as SolidHeart } from "@heroicons/react/24/solid";
 import { Spinner } from "@/components/ui/spinner";
+import { extractProductId } from "@/utils/url_constructor";
+import { useRouter } from "@bprogress/next";
 
 export default function ProductPage() {
-  const { productId } = useParams();
+  // Get the slug from params
+  const params = useParams();
+  // Extract the actual product ID from the slug parameter
+  const slug = Array.isArray(params.slug) ? params.slug.join('/') : params.slug || '';
+  const productId = extractProductId(slug);
+  
   const [product, setProduct] = useState<Product | null>(null);
   const [isInWishlist, setIsInWishlist] = useState(false);
   const [wishlistLoading, setWishlistLoading] = useState(false);
@@ -61,14 +69,14 @@ export default function ProductPage() {
     }
   };
 
-  if (!product) return <div className="py-20 flex justify-center"><Spinner/></div>;
+  if (!product) return <div className="py-20 flex justify-center"><Spinner size={40} /></div>;
 
   return (
     <div className="max-w-screen-xl mx-auto p-4">
       <div className="relative z-50 right-2 top-2">
         <Button 
           variant="ghost"
-           size="icon"
+          size="icon"
           onClick={handleWishlistToggle} 
           disabled={wishlistLoading}
           aria-label={isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
@@ -114,5 +122,3 @@ export default function ProductPage() {
     </div>
   );
 }
-
-

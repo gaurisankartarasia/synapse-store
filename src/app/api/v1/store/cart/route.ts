@@ -52,6 +52,10 @@ export async function GET(req: Request) {
               ...productData,
             }
           : null,
+          viewer:{
+            uid: uid,
+          },  
+           status: "ok"
       };
     });
 

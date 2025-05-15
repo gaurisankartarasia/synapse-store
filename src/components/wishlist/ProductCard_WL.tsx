@@ -82,6 +82,7 @@ import { TrashIcon } from "@heroicons/react/24/outline";
 import { Product } from "@/types/store/types";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { getProductUrl } from "@/utils/url_constructor";
 
 interface ProductCardProps {
   product: Product;
@@ -89,6 +90,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product, onRemove }: ProductCardProps) {
+  const productUrl = getProductUrl(product.name, product.productId);
   const [isInWishlist, setIsInWishlist] = useState(product.isWishlisted ?? false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -108,14 +110,14 @@ export default function ProductCard({ product, onRemove }: ProductCardProps) {
         />
       </Button>
       
-      <Link href={`/products/${product.productId}`} className="block">
+      <Link href={productUrl} className="block">
         <div className="relative h-40 w-full">
           <Image
             src={product.imageUrl}
             alt={product.name ?? "Product image"}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-            priority
+            loading="lazy"
             className="object-contain"
           />
         </div>

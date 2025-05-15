@@ -16,7 +16,7 @@ export default function CartPage() {
   if (loading) {
     return (
       <div className="flex items-center justify-center py-20">
-        <Spinner />
+        <Spinner size={40} />
       </div>
     );
   }
@@ -29,7 +29,7 @@ export default function CartPage() {
         {cartItems.length === 0 ? (
           <div className=" rounded-lg  p-12 text-center">
             <div className="flex justify-center mb-6">
-              <Image src="/assets/empty_cart.svg" height={350} width={350} alt='Empty Cart' />
+              <Image src="/assets/empty_cart.svg"  loading="lazy" height={350} width={350} alt='Empty Cart' />
             </div>
             <h2 className="text-2xl font-semibold mb-3">Your cart is empty</h2>
             <p className="text-gray-500 mb-6">Looks like you haven't added any products yet.</p>

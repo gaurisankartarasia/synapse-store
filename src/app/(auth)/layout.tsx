@@ -1,7 +1,11 @@
 import { ReduxProvider } from "../ReduxProvider";
 import "../globals.css";
+import type { Metadata } from "next";
 
-
+export const metadata: Metadata = {
+  title: "Signin",
+  description: "Synapse Store",
+};
 
 export default function AuthLayout({
     children,
@@ -9,15 +13,12 @@ export default function AuthLayout({
     children: React.ReactNode
 }) {
     return (
-      <html lang="en" suppressHydrationWarning >
-      <body className="antialiased">
-        {/* ReduxProvider and other global providers */}
+     
         <ReduxProvider>
           <>
-            <main>{children}</main>
+            <main className="antialiased bg-muted" >{children}</main>
           </>
         </ReduxProvider>
-      </body>
-    </html>
+     
     )
 }

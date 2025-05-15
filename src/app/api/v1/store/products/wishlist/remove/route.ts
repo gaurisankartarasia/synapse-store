@@ -48,7 +48,7 @@ export async function DELETE(request: Request) {
       { merge: true }
     );
 
-    return NextResponse.json({ message: "Product removed from wishlist" }, { status: 200 });
+    return NextResponse.json({ status: "ok" }, { status: 200 });
   } catch (error) {
     console.error("Remove from Wishlist API error:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

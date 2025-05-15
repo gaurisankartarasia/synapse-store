@@ -111,7 +111,7 @@ export async function POST(req: Request) {
       itemsInStoreCart: FieldValue.increment(1),
     });
 
-    return NextResponse.json({ message: "Product added to cart" });
+    return NextResponse.json({  status: "ok" });
   } catch (error) {
     console.error("Error adding to cart:", error);
     return NextResponse.json({ error: "Internal server error" }, { status: 500 });

@@ -7,7 +7,7 @@ import { fetchUserProfile } from '@/services/profileAPI';
 interface UserProfile {
   username: string;
   displayName: string;
-  profilePhotoURL: string;
+  identity: string;
   store:{
     itemsInCart: number;
   }
