@@ -143,7 +143,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         />
       </Button>
       
-      <Link target="_blank"  href={productUrl} className="block">
+      <Link  href={productUrl} className="block">
         <div className="relative h-40 w-full">
           <Image
             src={product.imageUrl}

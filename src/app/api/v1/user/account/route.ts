@@ -48,7 +48,7 @@ export async function PATCH(request: Request) {
     const uid = decoded?.uid;
     const body = await request.json();
 
-    const allowedFields = ["fullName", "storeEmail", "storePhone", "gender"];
+    const allowedFields = ["displayName", "storeEmail", "storePhone", "gender"];
     const updatePayload: Record<string, any> = {};
 
     for (const key of allowedFields) {

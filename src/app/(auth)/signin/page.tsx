@@ -255,7 +255,7 @@ export default function SignIn() {
               </div>
 
               <Button className="w-full" type="submit" disabled={loading}>
-                {loading ? <Spinner /> : 'Sign In'}
+                {loading ? <Spinner size={35} color='white' /> : 'Sign In'}
               </Button>
 
               <div className="text-center text-sm">

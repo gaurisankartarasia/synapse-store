@@ -18,7 +18,7 @@ export const OrderSummary = ({ cartItems }: Props) => {
   const total = calculateTotal(cartItems);
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6 sticky top-6">
+    <div className="bg-white rounded-lg shadow-sm p-6 sticky top-6 ">
       <h2 className="text-lg font-medium mb-4">Order Summary</h2>
       <div className="space-y-3 text-sm">
         <div className="flex justify-between">

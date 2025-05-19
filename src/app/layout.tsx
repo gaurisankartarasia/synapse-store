@@ -32,7 +32,7 @@ export default function RootLayout({
         <ReduxProvider>
           <>
          
-            <main className="pt-10" >{children}</main>
+            <main  >{children}</main>
           </>
         </ReduxProvider>
       </body>

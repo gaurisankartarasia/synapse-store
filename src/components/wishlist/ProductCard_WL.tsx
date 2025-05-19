@@ -97,7 +97,7 @@ export default function ProductCard({ product, onRemove }: ProductCardProps) {
 
 
   return (
-    <Card className="group relative overflow-hidden border-0 shadow-none rounded-lg transition-all hover:shadow-lg hover:scale-105 ">
+    <Card className="group relative overflow-hidden border-0 shadow-none rounded-lg transition-all hover:shadow-lg  ">
       <Button
         variant="ghost"
         size="icon"

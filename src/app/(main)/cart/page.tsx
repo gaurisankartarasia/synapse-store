@@ -22,7 +22,7 @@ export default function CartPage() {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen py-12">
+    <div className=" min-h-screen py-12">
       <div className="max-w-5xl mx-auto px-4">
       
 
